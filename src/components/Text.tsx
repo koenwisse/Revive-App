@@ -49,9 +49,11 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: RFValue(17),
     color: 'black',
+    fontFamily: 'Nunito-Bold',
   },
   normalText: {
     fontSize: RFValue(13),
     color: 'black',
+    fontFamily: 'Nunito-Medium',
   },
 });
