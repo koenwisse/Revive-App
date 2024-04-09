@@ -1,37 +1,34 @@
+import React, {FunctionComponent} from 'react';
 import {
   ImageSourcePropType,
   StyleSheet,
-  Text,
   View,
   useWindowDimensions,
 } from 'react-native';
-import React, {FunctionComponent} from 'react';
 import FastImage from 'react-native-fast-image';
-import {NormalText, TitleText} from './Text';
 import {RFPercentage, RFValue} from 'react-native-responsive-fontsize';
+
+import {NormalText, TitleText} from './Text';
 import {Images} from '../images';
 
 interface OnboardItemProps {
   data: {
     title: string;
-    discription: string;
-    image: ImageSourcePropType;
+    description: string;
+    image: ImageSourcePropType | any;
   };
 }
 
 const OnboardItem: FunctionComponent<OnboardItemProps> = ({data}) => {
   const {width} = useWindowDimensions();
+
   return (
-    <View style={[styles.conatiner, {width}]}>
-      <View
-        style={{
-          flex: 0.2,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+    <View style={[styles.container, {width}]}>
+      <View style={{flex: 0.2, alignItems: 'center', justifyContent: 'center'}}>
         <TitleText style={styles.titleStyle}>{data.title}</TitleText>
-        <NormalText style={styles.descStyle}>{data.discription}</NormalText>
+        <NormalText style={styles.descStyle}>{data.description}</NormalText>
       </View>
+
       <View style={{flex: 1, justifyContent: 'center'}}>
         <FastImage
           source={data.image}
@@ -40,7 +37,7 @@ const OnboardItem: FunctionComponent<OnboardItemProps> = ({data}) => {
         />
         <FastImage
           source={Images.appLogo}
-          style={[styles.appLogo]}
+          style={styles.appLogo}
           resizeMode="contain"
         />
       </View>
@@ -51,7 +48,7 @@ const OnboardItem: FunctionComponent<OnboardItemProps> = ({data}) => {
 export default OnboardItem;
 
 const styles = StyleSheet.create({
-  conatiner: {
+  container: {
     flex: 1,
     marginTop: RFPercentage(2),
   },

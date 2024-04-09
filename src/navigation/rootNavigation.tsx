@@ -1,11 +1,10 @@
-// RootNavigation.js
-
 import {
   CommonActions,
   StackActions,
   createNavigationContainerRef,
-} from "@react-navigation/native";
-import { screens } from "../utilitis";
+} from '@react-navigation/native';
+
+import {screens} from '../utilitis';
 
 export const navigationRef = createNavigationContainerRef();
 
@@ -29,10 +28,8 @@ export function replace(screen) {
 
 export function resetToHome() {
   if (navigationRef) {
-    navigationRef.dispatch((state) => {   
-      const routes = state.routes.filter(
-        (r) => r.name==screens.bottomTab
-      );
+    navigationRef.dispatch(state => {
+      const routes = state.routes.filter(r => r.name == screens.bottomTab);
       console.log(routes);
       return CommonActions.reset({
         ...state,

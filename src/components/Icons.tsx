@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Zocial from 'react-native-vector-icons/Zocial';
@@ -32,6 +33,9 @@ type IconType =
 
 type IconProps = {
   type: IconType;
+  name: String;
+  size?: Number;
+  color?: String;
 };
 
 const getIcon = (type: IconType) => {
@@ -69,8 +73,8 @@ const getIcon = (type: IconType) => {
   }
 };
 
-export const Icon: React.FC<IconProps> = ({ type, ...props }) => {
-  const FontIcon = getIcon(type);
+export const Icon: React.FC<IconProps> = ({type, ...props}) => {
+  const FontIcon: React.ComponentType<any> = getIcon(type);
 
   return <FontIcon {...props} />;
 };

@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  Text,
-  StyleSheet,
-  View,
-  TextProps,
-  StyleProp,
-  TextStyle,
-  Dimensions,
-} from 'react-native';
-import {RFPercentage, RFValue} from 'react-native-responsive-fontsize';
+import {RFValue} from 'react-native-responsive-fontsize';
+import {Text, StyleSheet, TextProps, StyleProp, TextStyle} from 'react-native';
 
 interface CustomTextProps extends TextProps {
   numberOfLines?: number;

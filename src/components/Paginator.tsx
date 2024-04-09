@@ -3,11 +3,11 @@ import {
   Animated,
   Pressable,
   StyleSheet,
-  Text,
   View,
   useWindowDimensions,
 } from 'react-native';
 import {RFPercentage, RFValue} from 'react-native-responsive-fontsize';
+
 import {Icon} from './Icons';
 import {Colors} from '../theme/Colors';
 import {NormalText} from './Text';
@@ -38,7 +38,11 @@ const Paginator: FunctionComponent<PaginatorProps> = ({
           const inputRange = [(i - 1) * width, i * width, (i + 1) * width];
           const dotWidth = scrollX.interpolate({
             inputRange,
-            outputRange: [RFPercentage(4), RFPercentage(4), RFPercentage(4)],
+            outputRange: [
+              RFPercentage(1.5),
+              RFPercentage(2),
+              RFPercentage(1.5),
+            ],
             extrapolate: 'clamp',
           });
           const opacity = scrollX.interpolate({
@@ -52,14 +56,18 @@ const Paginator: FunctionComponent<PaginatorProps> = ({
             extrapolate: 'clamp',
           });
           return (
-            <Animated.View
-              key={i.toString()}
-              style={{width: dotWidth, opacity}}>
-              <Animated.View style={[styles.dot, {backgroundColor}]} />
+            <Animated.View key={i.toString()} style={{opacity}}>
+              <Animated.View
+                style={[
+                  styles.dot,
+                  {backgroundColor, width: dotWidth, height: dotWidth},
+                ]}
+              />
             </Animated.View>
           );
         })}
       </View>
+
       <View style={styles.btnContainer}>
         {currentIndex === 0 ? (
           <Pressable style={styles.nextBtnContainer} onPress={onPressNext}>
@@ -110,7 +118,9 @@ const Paginator: FunctionComponent<PaginatorProps> = ({
                 color={Colors.white}
               />
             </Pressable>
+
             <View style={{marginHorizontal: RFPercentage(2)}} />
+
             <Pressable style={styles.nextBtnContainer} onPress={onPressNext}>
               <Icon
                 type="AntDesign"
@@ -130,18 +140,17 @@ export default Paginator;
 
 const styles = StyleSheet.create({
   dot: {
-    height: RFPercentage(2),
-    borderRadius: RFPercentage(70),
     backgroundColor: '#53EB95',
+    borderRadius: RFPercentage(70),
     marginHorizontal: RFPercentage(1),
   },
   container: {
-    flexDirection: 'row',
+    flex: 1,
     height: RFPercentage(4),
     paddingHorizontal: RFPercentage(3),
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    flex: 1,
   },
   btnContainer: {
     flexDirection: 'row',

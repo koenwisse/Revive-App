@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   View,
   StatusBar,
@@ -6,8 +5,7 @@ import {
   ViewStyle,
   SafeAreaView,
 } from 'react-native';
-
-const STATUSBAR_HEIGHT = StatusBar.currentHeight;
+import React from 'react';
 
 interface MyStatusBarProps extends StatusBarProps {
   backgroundColor: string;
@@ -16,6 +14,8 @@ interface MyStatusBarProps extends StatusBarProps {
 interface Styles {
   statusBar: ViewStyle;
 }
+
+const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 
 const styles: Styles = {
   statusBar: {
@@ -26,7 +26,7 @@ const styles: Styles = {
 const MyStatusBar: React.FC<MyStatusBarProps> = ({
   backgroundColor,
   ...props
-}) => (
+}: MyStatusBarProps) => (
   <View style={[styles.statusBar, {backgroundColor}]}>
     <SafeAreaView>
       <StatusBar translucent backgroundColor={backgroundColor} {...props} />
